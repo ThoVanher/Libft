@@ -20,7 +20,7 @@ char	*ft_strrchr(const char *s, int c)
 
 	str = (char *)s;
 	b = (unsigned char)c;
-	i = ft_strlen(str) + 1;
+	i = ft_strlen(str);
 	while (i >= 0)
 	{
 		if (str[i] == b)

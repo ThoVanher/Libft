@@ -72,6 +72,8 @@ char		**ft_split(char const *str, char c)
 	int		j;
 
 	j = 0;
+	if (!str)
+		return (0);
 	mots = nb_mots((char *)str, c);
 	if (!(res = (char **)malloc(sizeof(char *) * (mots + 1))))
 		return (0);

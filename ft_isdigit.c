@@ -12,10 +12,7 @@
 
 int	ft_isdigit(int c)
 {
-	unsigned char a;
-
-	a = (unsigned char)c;
-	if (a >= '0' && a <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }

@@ -26,6 +26,26 @@ static int	is_in_charset(const char *s1, char c)
 	return (0);
 }
 
+static int	start_new_str(char const *s1, char const *set, int *i)
+{
+	int j;
+	int start;
+
+	j = ft_strlen((char *)s1);
+	while (is_in_charset(set, s1[*i]))
+		(*i)++;
+	start = *i;
+	if (*i < j - 1)
+	{
+		while (is_in_charset(set, s1[j - 1]))
+		{
+			(*i)++;
+			j--;
+		}
+	}
+	return (start);
+}
+
 char		*ft_strtrim(char const *s1, char const *set)
 {
 	char	*new;
@@ -33,19 +53,10 @@ char		*ft_strtrim(char const *s1, char const *set)
 	int		j;
 	int		start;
 
-	j = ft_strlen((char *)s1);
+	if (!s1 || !set)
+		return (0);
 	i = 0;
-	while (is_in_charset(set, s1[i]))
-		i++;
-	start = i;
-	if (i != j)
-	{
-		while (is_in_charset(set, s1[j - 1]))
-		{
-			i++;
-			j--;
-		}
-	}
+	start = start_new_str(s1, set, &i);
 	j = 0;
 	if (!(new = malloc((ft_strlen((char *)s1) - i + 1) * sizeof(char))))
 		return (0);
